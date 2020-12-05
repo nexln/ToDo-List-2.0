@@ -24,9 +24,9 @@ export const AddItemForm = (props: AddItemFormType) => {
             setError("Title is required");
         }
     };
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    const onKeyPressHandler = ({charCode}: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
-        if (e.charCode === 13) {
+        if (charCode === 13) {
             addItem();
         }
     };
