@@ -43,8 +43,6 @@ export function Todolist(props: PropsType) {
             <IconButton onClick={deleteTask}>
                 <Delete/>
             </IconButton>
-            {/*<button onClick={deleteTask}>Delete*/}
-            {/*</button>*/}
         </h3>
         <AddItemForm addItem={addTask}/>
         <div>
@@ -74,21 +72,18 @@ export function Todolist(props: PropsType) {
                 size={'small'}
                 variant={props.filter === 'all' ? "contained" : "outlined"}
                 color={'default'}
-                // className={props.filter === 'all' ? "active-filter" : ""}
                 onClick={onAllClickHandler}>All
             </Button>
             <Button
                 size={'small'}
                 variant={props.filter === 'active' ? "contained" : "outlined"}
                 color={'primary'}
-                // className={props.filter === 'active' ? "active-filter" : ""}
                 onClick={onActiveClickHandler}>Active
             </Button>
             <Button
                 size={'small'}
                 variant={props.filter === 'completed' ? "contained" : "outlined"}
                 color={'secondary'}
-                // className={props.filter === 'completed' ? "active-filter" : ""}
                 onClick={onCompletedClickHandler}>Completed
             </Button>
         </div>

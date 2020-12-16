@@ -26,7 +26,6 @@ export type ChangeTaskTitleActionType = {
     taskId: string
 }
 
-
 type ActionType =
     RemoveTaskActionType
     | AddTaskActionType
