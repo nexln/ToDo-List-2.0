@@ -6,6 +6,7 @@ type EditableSpanType = {
     changeValue: (newValue: string) => void
 }
 export const EditableSpan = (props: EditableSpanType) => {
+
     let [title, setTitle] = useState(props.title);
     const [editMode, setEditMode] = useState<boolean>(false);
     const activatedEditMode = () => {
