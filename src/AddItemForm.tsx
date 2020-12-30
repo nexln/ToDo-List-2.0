@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {IconButton, TextField} from "@material-ui/core";
 import {AddBox} from "@material-ui/icons";
 
-type AddItemFormType = {
+export type AddItemFormType = {
     addItem: (title: string) => void
 }
 
@@ -47,7 +47,9 @@ export const AddItemForm = React.memo((props: AddItemFormType) => {
             <IconButton
                 color={"primary"}
                 size={"small"}
-                onClick={addItem}>
+                onClick={addItem}
+                style={{padding: '1px'}}
+            >
                 <AddBox/>
             </IconButton>
         </div>

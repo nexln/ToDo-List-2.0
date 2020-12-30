@@ -17,7 +17,7 @@ type PropsType = {
     changeTaskStatus: (taskId: string, isDone: boolean, toDoListID: string) => void
     filter: FilterValuesType
     removeToDoList: (toDoListID: string) => void
-    _changeTaskTitle: (taskId: string, title: string, toDoListID: string) => void
+    changeTaskTitle: (taskId: string, title: string, toDoListID: string) => void
     _changeToDoListTitle: (title: string, toDoListID: string) => void
 }
 
@@ -31,7 +31,7 @@ export const Todolist: React.FC<PropsType> = React.memo(({
                                                              changeTaskStatus,
                                                              filter,
                                                              removeToDoList,
-                                                             _changeTaskTitle,
+                                                             changeTaskTitle,
                                                              _changeToDoListTitle,
                                                          }) => {
 
@@ -65,9 +65,9 @@ export const Todolist: React.FC<PropsType> = React.memo(({
     const onChangeHandler = useCallback((taskId: string, isDone: boolean) => {
         changeTaskStatus(taskId, isDone, id);
     }, [changeTaskStatus, id]);
-    const changeTaskTitle = useCallback((taskId: string, title: string) => {
-        _changeTaskTitle(taskId, title, id)
-    }, [_changeTaskTitle, id]);
+    const onTitleChangeHandler = useCallback((taskId: string, title: string) => {
+        changeTaskTitle(taskId, title, id)
+    }, [changeTaskTitle, id]);
 
     return <div>
         <h3>
@@ -85,7 +85,7 @@ export const Todolist: React.FC<PropsType> = React.memo(({
                             key={t.id}
                             task={t}
                             onChangeHandler={onChangeHandler}
-                            changeTaskTitle={changeTaskTitle}
+                            onTitleChangeHandler={onTitleChangeHandler}
                             onClickHandler={onClickHandler}
                         />
                     )

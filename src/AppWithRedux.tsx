@@ -113,7 +113,7 @@ export function AppWithRedux() {
                                             changeTaskStatus={changeStatus}
                                             filter={tl.filter}
                                             removeToDoList={removeToDoList}
-                                            _changeTaskTitle={changeTitle}
+                                            changeTaskTitle={changeTitle}
                                             _changeToDoListTitle={changeToDoListTitle}
                                         />
                                     </Paper>
