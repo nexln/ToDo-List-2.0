@@ -7,7 +7,7 @@ import {Menu} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import {
   addTodolistTC, ChangeTodoListFilterAC,
-   fetchTodolistsTC,
+  fetchTodolistsTC,
   removeTodolistTC, TodolistsDomainType, updateTodolistTC,
 } from "./state/todolists-reducer";
 import {

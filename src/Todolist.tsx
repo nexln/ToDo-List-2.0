@@ -70,15 +70,6 @@ export const Todolist: React.FC<PropsType> = React.memo(({
         tasksForTodoList = tasks.filter(t => t.status === TaskStatuses.Completed)
     }
 
-
-    const onClickHandler = useCallback((taskId: string) => removeTask(taskId, id), [removeTask, id]);
-    const onChangeHandler = useCallback((taskId: string, status: TaskStatuses) => {
-        changeTaskStatus(taskId, status, id);
-    }, [changeTaskStatus, id]);
-    const onTitleChangeHandler = useCallback((taskId: string, title: string) => {
-        changeTaskTitle(taskId, title, id)
-    }, [changeTaskTitle, id]);
-
     return <div>
         <h3>
             <EditableSpan title={title} changeValue={changeToDoListTitle}/>
@@ -93,6 +84,7 @@ export const Todolist: React.FC<PropsType> = React.memo(({
                                                 removeTask={removeTask}
                                                 changeTaskTitle={changeTaskTitle}
                                                 changeTaskStatus={changeTaskStatus}
+                                                entityStatus={entityStatus}
                 />)
             }
         </div>
