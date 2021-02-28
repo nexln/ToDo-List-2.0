@@ -43,7 +43,7 @@ export const Todolist: React.FC<PropsType> = React.memo(({
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchTasksTC(id))
-    }, [])
+    }, [dispatch, id])
 
     const addTask = useCallback((title: string) => {
         _addTask(title, id)

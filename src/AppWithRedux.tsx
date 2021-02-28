@@ -1,24 +1,24 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
-import {AddItemForm} from "./AddItemForm";
-import {AppBar, Container, Grid, IconButton, LinearProgress, Paper, Toolbar, Typography} from "@material-ui/core";
+import {
+  AppBar, CircularProgress,
+  Container,
+  IconButton,
+  LinearProgress,
+  Toolbar,
+  Typography
+} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
-import {
-  addTodolistTC, ChangeTodoListFilterAC,
-  fetchTodolistsTC,
-  removeTodolistTC, TodolistsDomainType, updateTodolistTC,
-} from "./state/todolists-reducer";
-import {
-  addTaskTC,
-  removeTaskTC, updateTaskTC
-} from "./state/task-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
-import {TaskStatuses, TaskType} from "./api/todoListAPI";
-import {RequestStatusType} from "./state/app-reducer";
+import {TaskType} from "./api/todoListAPI";
+import {initializeAppTC, RequestStatusType} from "./state/app-reducer";
 import {ErrorSnackbar} from "./components/ErrorSnackbar/ErrorSnackbar";
+import {Login} from "./features/Login/Login";
+import {Redirect, Route, Switch} from "react-router-dom";
+import {TodolistsList} from "./features/TodolistList/TodolistList";
+import {logoutTC} from "./features/Login/auth-reducer";
 
 
 export type FilterValuesType = "all" | "active" | "completed";
@@ -28,55 +28,25 @@ export type TaskStateType = {
 }
 
 export function AppWithRedux() {
-  let todoLists = useSelector<AppRootStateType, Array<TodolistsDomainType>>(state => state.todoLists)
-  let tasks = useSelector<AppRootStateType, TaskStateType>(state => state.tasks)
+  const isInitialized = useSelector<AppRootStateType, boolean>(state => state.app.isInitialized)
+  const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
   let dispatch = useDispatch()
   const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
 
 
   useEffect(() => {
-    dispatch(fetchTodolistsTC())
-  }, [])
-
-  const removeTask = useCallback((id: string, toDoListID: string) => {
-    dispatch(removeTaskTC(id, toDoListID))
+    dispatch(initializeAppTC())
   }, [dispatch])
 
-  const addTask = useCallback((title: string, toDoListID: string) => {
-    dispatch(addTaskTC(title, toDoListID))
-  }, [dispatch])
-
-  const changeStatus = useCallback((taskId: string, status: TaskStatuses, toDoListID: string) => {
-    const thunk = updateTaskTC(taskId, {status}, toDoListID)
-    dispatch(thunk)
-  }, [dispatch])
-
-  const changeTitle = useCallback((taskId: string, title: string, toDoListID: string) => {
-    const thunk = updateTaskTC(taskId, {title: title}, toDoListID)
-    dispatch(thunk)
-  }, [dispatch])
-
-  const removeToDoList = useCallback((toDoListID: string) => {
-    const thunk = removeTodolistTC(toDoListID)
-    dispatch(thunk)
-  }, [dispatch]);
-
-
-  const changeFilter = useCallback((value: FilterValuesType, toDoListID: string) => {
-    const action = ChangeTodoListFilterAC(toDoListID, value)
-    dispatch(action)
-  }, [dispatch])
-
-  const changeToDoListTitle = useCallback((title: string, toDoListID: string) => {
-    const thunk = updateTodolistTC(toDoListID, title)
-    dispatch(thunk)
-  }, [dispatch])
-
-  const addToDoList = useCallback((title: string) => {
-    const thunk = addTodolistTC(title)
-    dispatch(thunk)
-  }, [dispatch])
-
+  if (!isInitialized) {
+    return <div
+      style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+      <CircularProgress/>
+    </div>
+  }
+  const logout = () => {
+    dispatch(logoutTC())
+  }
   return (
     <div className="App">
       <AppBar position="static">
@@ -87,42 +57,17 @@ export function AppWithRedux() {
           <Typography variant="h6">
             News
           </Typography>
-          <Button color={"inherit"}>Login</Button>
+          {isLoggedIn && <Button color={"inherit"} onClick={logout}>Log out</Button>}
         </Toolbar>
         {status === 'loading' && <LinearProgress color={'secondary'}/>}
       </AppBar>
       <Container fixed>
-        <Grid container style={{padding: "20px"}}>
-          <AddItemForm addItem={addToDoList}/>
-        </Grid>
-        <Grid container spacing={3}>
-          {
-            todoLists.map(tl => {
-              let allTodolistTasks = tasks[tl.id]
-              return (
-                <Grid item key={tl.id}>
-                  <Paper style={{padding: "10px"}}>
-                    <Todolist
-                      key={tl.id}
-                      id={tl.id}
-                      title={tl.title}
-                      entityStatus={tl.entityStatus}
-                      tasks={allTodolistTasks}
-                      removeTask={removeTask}
-                      changeFilter={changeFilter}
-                      _addTask={addTask}
-                      changeTaskStatus={changeStatus}
-                      filter={tl.filter}
-                      removeToDoList={removeToDoList}
-                      changeTaskTitle={changeTitle}
-                      _changeToDoListTitle={changeToDoListTitle}
-                    />
-                  </Paper>
-                </Grid>
-              )
-            })
-          }
-        </Grid>
+        <Switch>
+          <Route exact path={'/'} render={() => <TodolistsList/>}/>
+          <Route path={'/login'} render={() => <Login/>}/>
+          <Route path={'*'} render={() => <h1>404: PAGE NOT FOUND</h1>}/>
+          <Redirect from={'*'} to={'/404'}/>
+        </Switch>
       </Container>
       <ErrorSnackbar/>
     </div>
