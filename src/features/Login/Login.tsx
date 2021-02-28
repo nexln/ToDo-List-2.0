@@ -4,7 +4,7 @@ import {useFormik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {loginTC} from './auth-reducer';
 import {Redirect} from "react-router-dom";
-import {AppRootStateType} from "../../state/store";
+import {AppRootStateType} from "../../app/store";
 
 type FormikErrorType = {
   email?: string

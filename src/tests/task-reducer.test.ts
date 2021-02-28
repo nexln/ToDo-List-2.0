@@ -1,10 +1,10 @@
-import {addTaskAC, RemoveTaskAC, setTasksAC, taskReducer, updateTaskAC} from './task-reducer';
+import {addTaskAC, RemoveTaskAC, setTasksAC, taskReducer, updateTaskAC} from '../features/TodolistList/task-reducer';
 import {
     AddTodoListAC,
     RemoveTodoListAC,
     TodolistsDomainType,
-    } from "./todolists-reducer";
-import {TaskStateType} from "../AppWithRedux";
+    } from "../features/TodolistList/todolists-reducer";
+import {TaskStateType} from "../app/AppWithRedux";
 import {TaskPriorities} from "../api/todoListAPI";
 
 let startState: TaskStateType = {}
@@ -113,7 +113,7 @@ test('new array should be added when new todolist is added', () => {
     expect(endState[newKey]).toEqual([]);
 });
 
-test('tasks should be set to the state', () => {
+test('tasks should be set to the tests', () => {
 
 
     const endState = taskReducer({}, setTasksAC(startState[0], 'todolistId1'));

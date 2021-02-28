@@ -11,14 +11,14 @@ import {
 import {Menu} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./state/store";
-import {TaskType} from "./api/todoListAPI";
-import {initializeAppTC, RequestStatusType} from "./state/app-reducer";
-import {ErrorSnackbar} from "./components/ErrorSnackbar/ErrorSnackbar";
-import {Login} from "./features/Login/Login";
+import {AppRootStateType} from "./store";
+import {TaskType} from "../api/todoListAPI";
+import {initializeAppTC, RequestStatusType} from "./app-reducer";
+import {ErrorSnackbar} from "../components/ErrorSnackbar/ErrorSnackbar";
+import {Login} from "../features/Login/Login";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {TodolistsList} from "./features/TodolistList/TodolistList";
-import {logoutTC} from "./features/Login/auth-reducer";
+import {TodolistsList} from "../features/TodolistList/TodolistList";
+import {logoutTC} from "../features/Login/auth-reducer";
 
 
 export type FilterValuesType = "all" | "active" | "completed";

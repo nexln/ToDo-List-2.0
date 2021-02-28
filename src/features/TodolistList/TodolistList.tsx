@@ -5,14 +5,14 @@ import {
   fetchTodolistsTC,
   removeTodolistTC,
   TodolistsDomainType, updateTodolistTC
-} from "../../state/todolists-reducer";
+} from "./todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../state/store";
-import {FilterValuesType, TaskStateType} from "../../AppWithRedux";
+import {AppRootStateType} from "../../app/store";
+import {FilterValuesType, TaskStateType} from "../../app/AppWithRedux";
 import {Grid, Paper} from "@material-ui/core";
-import {AddItemForm} from "../../AddItemForm";
-import {Todolist} from "../../Todolist";
-import {addTaskTC, removeTaskTC, updateTaskTC} from "../../state/task-reducer";
+import {AddItemForm} from "../../components/AddItemForm/AddItemForm";
+import {Todolist} from "./Todolist/Todolist";
+import {addTaskTC, removeTaskTC, updateTaskTC} from "./task-reducer";
 import {TaskStatuses} from "../../api/todoListAPI";
 import {Redirect} from "react-router-dom";
 

@@ -3,7 +3,7 @@ import {
   SetAppErrorActionType,
   setAppStatusAC,
   SetAppStatusActionType, setIsInitializedType,
-} from '../../state/app-reducer'
+} from '../../app/app-reducer'
 import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 import {AuthLoginType, authAPI} from "../../api/authAPI";
 

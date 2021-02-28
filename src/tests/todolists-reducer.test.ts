@@ -4,9 +4,9 @@ import {
     ChangeTodolistTitleAC,
     RemoveTodoListAC, setTodoListsAC, TodolistsDomainType,
     todoListsReducer
-} from './todolists-reducer';
+} from '../features/TodolistList/todolists-reducer';
 import {v1} from 'uuid';
-import {FilterValuesType} from "../AppWithRedux";
+import {FilterValuesType} from "../app/AppWithRedux";
 
 let todolistId1: string;
 let todolistId2: string;
@@ -58,7 +58,7 @@ test('correct filter of todolist should be changed', () => {
     expect(endState[0].filter).toBe("all");
     expect(endState[1].filter).toBe(newFilterValue);
 });
-test('todolist should be set to the state', () => {
+test('todolist should be set to the tests', () => {
 
 
     const endState = todoListsReducer([], setTodoListsAC(startState));

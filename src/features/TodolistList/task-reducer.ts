@@ -1,10 +1,10 @@
 import {AddTodolistActionType, RemoveTodolistActionType, SetTodoListsActionType} from "./todolists-reducer";
-import {TaskStateType} from "../AppWithRedux";
-import {TaskPriorities, TaskStatuses, TaskType, todolistsAPI, UpdateTaskModelType} from "../api/todoListAPI";
+import {TaskStateType} from "../../app/AppWithRedux";
+import {TaskPriorities, TaskStatuses, TaskType, todolistsAPI, UpdateTaskModelType} from "../../api/todoListAPI";
 import {Dispatch} from "redux";
-import {AppRootStateType} from "./store";
-import {setAppStatusAC} from "./app-reducer";
-import {handleServerAppError, handleServerNetworkError} from "../utils/error-utils";
+import {AppRootStateType} from "../../app/store";
+import {setAppStatusAC} from "../../app/app-reducer";
+import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 
 export type UpdateDomainTaskModelType = {
   title?: string
@@ -143,7 +143,7 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
     const state = getState()
     const task = state.tasks[todolistId].find(t => t.id === taskId)
     if (!task) {
-      console.warn('task not found in the state')
+      console.warn('task not found in the tests')
       return
     }
 
