@@ -12,7 +12,6 @@ import {Menu} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./store";
-import {TaskType} from "../api/todoListAPI";
 import {initializeAppTC, RequestStatusType} from "./app-reducer";
 import {ErrorSnackbar} from "../components/ErrorSnackbar/ErrorSnackbar";
 import {Login} from "../features/Login/Login";
@@ -22,10 +21,6 @@ import {logoutTC} from "../features/Login/auth-reducer";
 
 
 export type FilterValuesType = "all" | "active" | "completed";
-
-export type TaskStateType = {
-  [key: string]: Array<TaskType>
-}
 
 export function AppWithRedux() {
   const isInitialized = useSelector<AppRootStateType, boolean>(state => state.app.isInitialized)

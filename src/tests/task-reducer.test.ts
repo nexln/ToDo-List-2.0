@@ -1,10 +1,16 @@
-import {addTaskAC, RemoveTaskAC, setTasksAC, taskReducer, updateTaskAC} from '../features/TodolistList/task-reducer';
+import {
+    addTaskAC,
+    RemoveTaskAC,
+    setTasksAC, TaskDomainType,
+    taskReducer,
+    TaskStateType,
+    updateTaskAC
+} from '../features/TodolistList/task-reducer';
 import {
     AddTodoListAC,
     RemoveTodoListAC,
     TodolistsDomainType,
     } from "../features/TodolistList/todolists-reducer";
-import {TaskStateType} from "../app/AppWithRedux";
 import {TaskPriorities} from "../api/todoListAPI";
 
 let startState: TaskStateType = {}
@@ -12,14 +18,14 @@ let startState: TaskStateType = {}
 beforeEach(() => {
     startState = {
         "todolistId1": [
-            {id: "1", title: "CSS", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''},
-            {id: "2", title: "JS", isDone: true, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''},
-            {id: "3", title: "React", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''}
+            {id: "1", title: "CSS", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'},
+            {id: "2", title: "JS", isDone: true, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'},
+            {id: "3", title: "React", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'}
         ],
         "todolistId2": [
-            {id: "1", title: "bread", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''},
-            {id: "2", title: "milk", isDone: true, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''},
-            {id: "3", title: "tea", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''}
+            {id: "1", title: "bread", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'},
+            {id: "2", title: "milk", isDone: true, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'},
+            {id: "3", title: "tea", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'}
         ]
     };
 })
@@ -45,8 +51,7 @@ test('correct task should be deleted from correct array', () => {
 
 test('correct task should be added to correct array', () => {
 
-    const newTask = {id: "4", title: "juce", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: 'todolistId2'}
-    ;
+    const newTask: TaskDomainType = {id: "4", title: "juce", isDone: false, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: 'todolistId2', entityTaskStatus: 'idle'};
     const endState = taskReducer(startState, addTaskAC(newTask))
 
     expect(endState["todolistId1"].length).toBe(3);

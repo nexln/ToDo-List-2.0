@@ -23,12 +23,16 @@ const initialGlobalState: AppRootStateType = {
     ] ,
     tasks: {
         ["todolistId1"]: [
-            {id: v1(), title: "HTML&CSS", isDone: true, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''},
-            {id: v1(), title: "JS", isDone: true, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''}
+            {id: v1(), title: "HTML&CSS", isDone: true, addedDate: '', description: '', deadline: '', order: 1,
+                priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'},
+            {id: v1(), title: "JS", isDone: true, addedDate: '', description: '', deadline: '', order: 1,
+                priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'}
         ],
         ["todolistId2"]: [
-            {id: v1(), title: "Milk", isDone: true, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''},
-            {id: v1(), title: "React Book", isDone: true, addedDate: '', description: '', deadline: '', order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: ''}
+            {id: v1(), title: "Milk", isDone: true, addedDate: '', description: '', deadline: '', order: 1,
+                priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'},
+            {id: v1(), title: "React Book", isDone: true, addedDate: '', description: '', deadline: '',
+                order: 1, priority: TaskPriorities.Low, startDate: '', status: 1, todoListId: '', entityTaskStatus: 'idle'}
         ]
     },
     app: {

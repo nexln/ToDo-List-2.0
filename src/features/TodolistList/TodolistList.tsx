@@ -8,11 +8,11 @@ import {
 } from "./todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../app/store";
-import {FilterValuesType, TaskStateType} from "../../app/AppWithRedux";
+import {FilterValuesType} from "../../app/AppWithRedux";
 import {Grid, Paper} from "@material-ui/core";
 import {AddItemForm} from "../../components/AddItemForm/AddItemForm";
 import {Todolist} from "./Todolist/Todolist";
-import {addTaskTC, removeTaskTC, updateTaskTC} from "./task-reducer";
+import {addTaskTC, removeTaskTC, TaskStateType, updateTaskTC} from "./task-reducer";
 import {TaskStatuses} from "../../api/todoListAPI";
 import {Redirect} from "react-router-dom";
 

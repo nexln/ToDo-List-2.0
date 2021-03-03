@@ -9,7 +9,7 @@ export type AddTodolistActionType = ReturnType<typeof AddTodoListAC>;
 export type ChangeTodoListEntityStatusActionType = ReturnType<typeof changeTodoListEntityStatusAC>;
 export type ChangeTodolistTitleActionType = ReturnType<typeof ChangeTodolistTitleAC>
 export type ChangeTodolistFilterActionType = ReturnType<typeof ChangeTodoListFilterAC>
-export type SetTodoListsActionType =ReturnType<typeof setTodoListsAC>
+export type SetTodoListsActionType = ReturnType<typeof setTodoListsAC>
 
 
 let initialState: Array<TodolistsDomainType> = []
