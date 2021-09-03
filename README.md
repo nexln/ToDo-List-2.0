@@ -1,4 +1,4 @@
-Check DEMO here -> nexln.github.io/ToDo-List-2.0
+Check [DEMO](nexln.github.io/ToDo-List-2.0) here 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
